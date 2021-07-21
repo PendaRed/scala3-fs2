@@ -1,8 +1,13 @@
 # FS2 pull
 
+As of July 2021, fs2 seems to have major API changes every few years.
+
 ## It's not obvious
 
 Well, to me it isn't.  So I did some code.
+
+Sadly the documentation is not great, and the information on the internet is often out of date.
+
 
 ## Background notes:
 
@@ -21,7 +26,9 @@ Nothing means can't return, Unit is 'completes with no information'
 
 If you have a stream, you can call uncons1 on it and it returns a pull.
 
-You can use the Pull to do stateful like actions by manipulating R and recursing.
+You can use the Pull to do stateful like actions by manipulating R and recursing. 
+Actually its not recursing as >> is a operator taking a function, so that means its 
+not recursing on stack in the traditional manor.
 
 uncons1 on a stream returns a Pull that emits nothing.
 
