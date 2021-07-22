@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicInteger
             Pull.pure(None) >> filterAndInsert(st, Some(l))
           case v@Some(l, st) if l == lastVal =>
             // Do BAD external state stuff!  like databases and so on
-            if (dupCount.incrementAndGet() % 5 == 0) // every 5th dupe output 1000
+            if (dupCount.incrementAndGet() % 5 == 0) // every 5th dupe output -1,-2,-3 into the stream
             // Insert 3 items for the 5th duplicate
               Pull.output(Chunk(Some(-1L), Some(-2L), Some(-3L))) >> filterAndInsert(st, l)
             else
