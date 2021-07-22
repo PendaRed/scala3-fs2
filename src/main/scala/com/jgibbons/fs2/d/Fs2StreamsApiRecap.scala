@@ -4,7 +4,7 @@ import cats.effect.IO
 import fs2._
 import cats.effect.unsafe.implicits.global
 
-@main def EgPull =
+@main def Fs2StreamsApiRecap =
   def callARestEndPoint() = IO{s"""{"time":${System.currentTimeMillis()}}"""}
   def transformData(jsonPayload:String) = jsonPayload.hashCode
   case class SomeData(i:Int)
