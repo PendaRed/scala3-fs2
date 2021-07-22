@@ -7,7 +7,10 @@ import cats.effect.unsafe.implicits.global
 @main def EvalTapEg =
   case class MyData(id:Int, fname:String, sname:String)
   // This is a vital part of fs2, as it will schedule any types of IO you want without changing
-  // the stream itself
+  // the stream itself.  ie click into evalTap and you will see it uses IO.as, which will call the effect
+  // and then replace the return value.  so evalTap means cats effects invoke your function as the stream elements
+  // arrive, and then put the stream element back into the stream, even though you function does something totally
+  // different.
   def anEffectfulFunction(i:Int) : IO[MyData] = {
     for {
       pers <- IO{MyData(i, "Caladan", "Brood")}
