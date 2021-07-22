@@ -28,14 +28,12 @@ import cats.effect.unsafe.implicits.global
 
   str.unsafeRunSync
 
-/*
-MyData(1,Caladan,Brood)
-The stream is still ints - 1
-The stream is still ints - 101
-MyData(2,Caladan,Brood)
-The stream is still ints - 2
-The stream is still ints - 102
-MyData(3,Caladan,Brood)
-The stream is still ints - 3
-The stream is still ints - 103
- */
+//MyData(1,Caladan,Brood)
+//The stream is still ints - 1
+//The stream is still ints - 101
+//MyData(2,Caladan,Brood)
+//The stream is still ints - 2
+//The stream is still ints - 102
+//MyData(3,Caladan,Brood)
+//The stream is still ints - 3
+//The stream is still ints - 103
