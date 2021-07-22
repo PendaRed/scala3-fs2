@@ -22,3 +22,22 @@ import cats.effect.unsafe.implicits.global
     })
 
     .compile.drain.unsafeRunSync()
+
+//1 A
+//STR  1
+//STR  2
+//STR  3
+//STR  4
+//2 A
+//1 B
+//STR  1
+//STR  2
+//STR  3
+//STR  4
+//2 B
+//1 C
+//STR  1
+//STR  2
+//STR  3
+//STR  4
+//2 C
