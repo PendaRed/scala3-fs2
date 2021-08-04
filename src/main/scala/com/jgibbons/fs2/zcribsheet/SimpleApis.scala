@@ -68,10 +68,35 @@ package com.jgibbons.fs2.zcribsheet
     str.compile.drain.unsafeRunSync
   }
 
-  //    import cats.effect.unsafe.implicits.global
+  def ioStartExample() =
+    import cats.effect.IO
+    import fs2.Stream
+    showName("ifYouHadNoAs")
+    // example output
+    //Main thread is: main
+    //io-compute-0 processor :iGetAString
+    //io-compute-2 inside badProcessor
+    //io-compute-0 badProcessor :iGetAString
+    def iGetAString(c:String) : IO[String] = IO{println(s"${Thread.currentThread().getName()} $c :iGetAString");"Some DB Value"}
+    def processor():IO[Unit] =
+      iGetAString("processor").as[Unit]( () )
+    def badProcessor():IO[Unit] =
+      IO {
+        println(s"${Thread.currentThread().getName()} inside badProcessor")
+        val fibre = iGetAString("badProcessor").start // Note IO.start is possible, syncIO.start is not an API
+        fibre.as(())
+      }.flatten
+
+    import cats.effect.unsafe.implicits.global
+    println(s"Main thread is: ${Thread.currentThread().getName()}")
+    processor().unsafeRunSync()
+    badProcessor().unsafeRunSync() // background fibre was started
+  end ioStartExample
+
 
   // Now call them
   emitNumbers()
   emitFromAList()
   evalsAnEffectProducingValues()
   exampleOfAs()
+  ioStartExample()
