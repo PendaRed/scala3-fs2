@@ -18,22 +18,22 @@ import cats.effect.IO, cats.effect.unsafe.implicits.global
     infStream
   end monStream
 
-  val ownerStr1 = fs2.Stream.eval({
+  val ownerStr1 = fs2.Stream.eval({  // Doing fs2.Stream.eval means we need the compile.drain below
     val strA = monStream("A:")
     val strB = monStream("B:")
 
-    strA.concurrently(strB).compile.drain
+    strA.concurrently(strB).compile.drain // the eval expects an IO, which is provided by the compile.drain
   })
-  val ownerStr2 = fs2.Stream.eval({
+  val ownerStr2 = {
     val strC = monStream("C:")
     val strD = monStream("D:")
 
-    strC.concurrently(strD).compile.drain
-  })
-  ownerStr1.compile.drain.unsafeRunSync
+    strC.concurrently(strD)  // no compile.drain needed, as no stream.eval
+  }
+  //ownerStr1.compile.drain.unsafeRunSync
 
-//  val s = ownerStr1.concurrently(ownerStr2)
-//  s.compile.drain.unsafeRunAsync
+  val s = ownerStr1.concurrently(ownerStr2)
+  s.compile.drain.unsafeRunSync
 
   Thread.sleep(60000)
 
