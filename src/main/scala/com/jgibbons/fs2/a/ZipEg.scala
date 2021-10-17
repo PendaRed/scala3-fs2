@@ -5,6 +5,9 @@ import fs2.{Pure, Stream}
 
 import scala.concurrent.duration.FiniteDuration
 
+/**
+ * Simply prints 1 to 9, every second.
+ */
 object ZipEg extends IOApp.Simple :
   def makeStream(): Stream[IO, (FiniteDuration, Unit)] =
     import scala.concurrent.duration._
