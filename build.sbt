@@ -11,12 +11,12 @@ lazy val root = project
     scalaVersion := scala3Version,
 
     // https://mvnrepository.com/artifact/co.fs2/fs2-core
-	libraryDependencies += "co.fs2" % "fs2-core_2.13" % "3.0.6",
+	libraryDependencies += "co.fs2" % "fs2-core_2.13" % "3.2.4",
 	// optional I/O library
-	libraryDependencies += "co.fs2" % "fs2-io_2.13" % "3.0.6",
+	libraryDependencies += "co.fs2" % "fs2-io_2.13" % "3.2.4",
 
 	// optional reactive streams interop
-	libraryDependencies += "co.fs2" % "fs2-reactive-streams_2.13" % "3.0.6",
+	libraryDependencies += "co.fs2" % "fs2-reactive-streams_2.13" % "3.2.4",
 
   // https://mvnrepository.com/artifact/org.typelevel/cats-effect
   libraryDependencies += "org.typelevel" % "cats-effect_3" % "3.1.1",
